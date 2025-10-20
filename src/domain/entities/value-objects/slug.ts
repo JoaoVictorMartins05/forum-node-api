@@ -7,6 +7,9 @@ export class Slug {
 
   /**
    * Receives a string and normalize it as a slug.
+   * 
+   * Example: "Hello World!" => "hello-world"
+   * 
    * @param text
    * @returns
    */
