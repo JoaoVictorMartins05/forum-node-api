@@ -21,6 +21,7 @@ export class AnswerQuestionUseCase {
       authorId: instructorId,
     })
 
+    
     await this.answersRepository.create(answer)
 
     return answer
