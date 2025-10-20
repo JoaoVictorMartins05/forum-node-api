@@ -8,4 +8,9 @@ interface IQuestion {
   slug: Slug
 }
 
-export class Question extends Entity<IQuestion> {}
+export class Question extends Entity<IQuestion> {
+
+  constructor(props: IQuestion, id?: string) {
+    super(props, id)
+  }
+}
