@@ -1,6 +1,7 @@
 import { Slug } from './value-objects/slug'
 import { Entity } from '../core/entities/entity'
 import { UniqueEntityId } from '../core/entities/unique-entity-id'
+import { Optional } from '../core/types/optional'
 
 interface IQuestion {
   title: string
@@ -14,7 +15,16 @@ interface IQuestion {
 
 export class Question extends Entity<IQuestion> {
 
-  constructor(props: IQuestion, id?: string) {
-    super(props, id)
+  static create(props: Optional<IQuestion, "createdAt">, id?: UniqueEntityId) {
+    const question = new Question(
+      {
+        ...props,
+        slug: props.slug ?? Slug.createFromText(props.title),
+        createdAt: props.createdAt ?? new Date(),
+      },
+      id,
+    )
+
+    return question
   }
 }
