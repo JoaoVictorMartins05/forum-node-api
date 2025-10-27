@@ -16,14 +16,12 @@ export class AnswerQuestionUseCase {
     questionId,
     content,
   }: AnswerQuestionUseCaseRequest) {
-
-
     const answer = Answer.create({
       content,
       questionId: new UniqueEntityId(questionId),
       authorId: new UniqueEntityId(instructorId),
     })
-    
+
     await this.answersRepository.create(answer)
 
     return answer

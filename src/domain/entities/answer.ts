@@ -11,7 +11,6 @@ interface IAnswer {
 }
 
 export class Answer extends Entity<IAnswer> {
-  
   get questionId(): UniqueEntityId {
     return this.props.questionId
   }
@@ -36,7 +35,7 @@ export class Answer extends Entity<IAnswer> {
     return this.content.substring(0, 120).trimEnd().concat('...')
   }
 
-  private touch(){
+  private touch() {
     this.props.updatedAt = new Date()
   }
 
@@ -45,7 +44,7 @@ export class Answer extends Entity<IAnswer> {
     this.touch()
   }
 
-  static create(props: Optional<IAnswer, "createdAt">, id?: UniqueEntityId) {
+  static create(props: Optional<IAnswer, 'createdAt'>, id?: UniqueEntityId) {
     const answer = new Answer(
       {
         ...props,

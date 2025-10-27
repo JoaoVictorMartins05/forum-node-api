@@ -15,7 +15,6 @@ interface IQuestion {
 }
 
 export class Question extends Entity<IQuestion> {
-
   get title(): string {
     return this.props.title
   }
@@ -52,7 +51,7 @@ export class Question extends Entity<IQuestion> {
     return this.content.substring(0, 120).trimEnd().concat('...')
   }
 
-  private touch(){
+  private touch() {
     this.props.updatedAt = new Date()
   }
 
@@ -72,7 +71,10 @@ export class Question extends Entity<IQuestion> {
     this.touch()
   }
 
-  static create(props: Optional<IQuestion, "createdAt" | "slug">, id?: UniqueEntityId) {
+  static create(
+    props: Optional<IQuestion, 'createdAt' | 'slug'>,
+    id?: UniqueEntityId,
+  ) {
     const question = new Question(
       {
         ...props,
