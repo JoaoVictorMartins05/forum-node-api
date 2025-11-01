@@ -1,21 +1,27 @@
-import { Question } from "../../enterprise/entities/question"
-import { QuestionRepository } from "../repositories/question-repository"
+import { InMemoryQuestionsRepository } from "../../../../test/repositories/in-memory-questions-repository"
 import { CreateQuestionUseCase } from "./create-question"
 
-const fakeQuestionRepository: QuestionRepository = {
-  create: async function (question: Question): Promise<void> {
-    return Promise.resolve()
-  },
+let inMemoryRepository: InMemoryQuestionsRepository
+let sut: CreateQuestionUseCase
+
+describe('Create Question', () => {
+    
+    beforeEach(() => {
+        inMemoryRepository = new InMemoryQuestionsRepository()
+        sut = new CreateQuestionUseCase(inMemoryRepository)
+    })
+
+    it('Should be able to create an answer', async () => {
+
+        const { question } = await sut.execute({
+            authorId: 'author-01',
+            title: 'title-01',
+            content: 'This is a content to the question.',
+        })
+
+        expect(question.id).toBeTruthy()
+        expect(inMemoryRepository.items).toHaveLength(1)
+        expect(inMemoryRepository.items[0]).toEqual(question)
+    })
 }
-
-test('Create an answer', async () => {
-  const createQuestion = new CreateQuestionUseCase(fakeQuestionRepository)
-
-  const {question} = await createQuestion.execute({
-    authorId: 'author-01',
-    title: 'title-01',
-    content: 'This is a content to the question.',
-  })
-
-  expect(question.id).toBeTruthy()
-})
+)
