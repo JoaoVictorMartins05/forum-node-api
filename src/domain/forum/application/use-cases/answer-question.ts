@@ -1,4 +1,3 @@
-
 import { UniqueEntityId } from '../../../core/entities/unique-entity-id'
 import { Answer } from '../../enterprise/entities/answer'
 import { AnswersRepository } from '../repositories/answer-repository'

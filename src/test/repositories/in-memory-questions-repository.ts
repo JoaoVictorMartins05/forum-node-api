@@ -8,4 +8,8 @@ export class InMemoryQuestionsRepository implements QuestionRepository {
         this.items.push(question)
     }
 
+    async getQuestionBySlug(slug: string): Promise<Question | null> {
+        return this.items.find(question => question.slug.value === slug) || null
+    }
+
 }
