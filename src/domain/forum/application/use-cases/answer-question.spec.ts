@@ -5,14 +5,12 @@ let inMemoryRepository: InMemoryAnswersRepository
 let sut: AnswerQuestionUseCase
 
 describe('Answer Question', () => {
-
   beforeEach(() => {
     inMemoryRepository = new InMemoryAnswersRepository()
     sut = new AnswerQuestionUseCase(inMemoryRepository)
   })
 
   it('Should be able to answer a question', async () => {
-
     const answer = await sut.execute({
       instructorId: 'instructor-01',
       questionId: 'question-01',
@@ -23,5 +21,4 @@ describe('Answer Question', () => {
     expect(inMemoryRepository.items).toHaveLength(1)
     expect(inMemoryRepository.items[0]).toEqual(answer)
   })
-}
-)
+})

@@ -1,4 +1,4 @@
-import { Question } from "../../enterprise/entities/question";
+import { Question } from '../../enterprise/entities/question'
 
 export interface QuestionRepository {
   getQuestionBySlug(slug: string): Promise<Question | null>
