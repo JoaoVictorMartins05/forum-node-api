@@ -1,4 +1,3 @@
-import { UniqueEntityId } from '../../domain/core/entities/unique-entity-id'
 import { QuestionRepository } from '../../domain/forum/application/repositories/question-repository'
 import { Question } from '../../domain/forum/enterprise/entities/question'
 
@@ -25,5 +24,12 @@ export class InMemoryQuestionsRepository implements QuestionRepository {
       this.items.find((question) => question.id.toString() === questionId) ||
       null
     )
+  }
+
+  async save(question: Question): Promise<void> {
+    const itemId = this.items.findIndex((item) => item.id === question.id)
+    if (itemId >= 0) {
+      this.items[itemId] = question
+    }
   }
 }

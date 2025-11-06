@@ -1,10 +1,6 @@
-import { Q } from 'vitest/dist/chunks/reporters.d.C-cu31ET'
 import { InMemoryQuestionsRepository } from '../../../../test/repositories/in-memory-questions-repository'
 import { Slug } from '../../enterprise/entities/value-objects/slug'
-import { CreateQuestionUseCase } from './create-question'
 import { GetQuestionBySlugUseCase } from './get-question-by-slug'
-import { UniqueEntityId } from '../../../core/entities/unique-entity-id'
-import { Question } from '../../enterprise/entities/question'
 import { makeQuestion } from '../../../../test/factories/make-question'
 
 let inMemoryRepository: InMemoryQuestionsRepository
