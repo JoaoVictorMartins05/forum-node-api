@@ -32,8 +32,8 @@ export class Question extends Entity<IQuestion> {
     return this.props.slug
   }
 
-  get bestAnswerId(): UniqueEntityId {
-    return this.props.authorId
+  get bestAnswerId(): UniqueEntityId | undefined {
+    return this.props.bestAnswerId
   }
 
   get createdAt(): Date {

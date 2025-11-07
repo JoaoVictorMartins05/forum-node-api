@@ -1,19 +1,24 @@
+import { Answer } from '../../enterprise/entities/answer'
 import { AnswersRepository } from '../repositories/answer-repository'
 
-interface DeleteAnswerRequest {
+interface EditAnswerRequest {
   answerId: string
   userId: string
+  content: string
 }
 
-interface DeleteAnswerResponse {}
+interface EditAnswerResponse {
+  answer: Answer
+}
 
-export class DeleteAnswerUseCase {
+export class EditAnswerUseCase {
   constructor(private answerRepository: AnswersRepository) {}
 
   async execute({
     answerId,
     userId,
-  }: DeleteAnswerRequest): Promise<DeleteAnswerResponse> {
+    content,
+  }: EditAnswerRequest): Promise<EditAnswerResponse> {
     const answer = await this.answerRepository.findById(answerId)
 
     if (!answer) {
@@ -24,8 +29,10 @@ export class DeleteAnswerUseCase {
       throw new Error('You are not the author of this answer.')
     }
 
-    await this.answerRepository.delete(answer)
+    answer.content = content
 
-    return {}
+    await this.answerRepository.save(answer)
+
+    return { answer }
   }
 }

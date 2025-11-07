@@ -9,7 +9,7 @@ export function makeQuestion(
 ) {
   const question = Question.create(
     {
-      authorId: new UniqueEntityId('author-1'),
+      authorId: new UniqueEntityId(),
       title: faker.lorem.sentence(),
       content: faker.lorem.text(),
       slug: Slug.create(faker.lorem.sentence()),

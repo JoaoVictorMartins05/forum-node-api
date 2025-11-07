@@ -8,8 +8,8 @@ export function makeAnswer(
 ) {
   const answer = Answer.create(
     {
-      questionId: new UniqueEntityId('question-1'),
-      authorId: new UniqueEntityId('author-1'),
+      questionId: new UniqueEntityId(),
+      authorId: new UniqueEntityId(),
       content: faker.lorem.text(),
       ...override,
     },
