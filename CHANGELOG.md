@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/JoaoVictorMartins05/forum-node-api/compare/v1.1.0...v1.2.0) (2025-11-12)
+
+
+### Features
+
+* add comment classes ([499d67c](https://github.com/JoaoVictorMartins05/forum-node-api/commit/499d67cc03cbcf1af32440ba890b684045726d88))
+* add edit question use case ([9f5e3a1](https://github.com/JoaoVictorMartins05/forum-node-api/commit/9f5e3a197ccbafc16e87e45eea8e6c68cab467eb))
+* add Fetch Question Answers Use Case ([91ecb25](https://github.com/JoaoVictorMartins05/forum-node-api/commit/91ecb25cb152d0027ed2c2dc5b8df04c6c668e5f))
+* add fetch questions use case ([058806c](https://github.com/JoaoVictorMartins05/forum-node-api/commit/058806c5fa6a78e16c4255101bf12924c26b84d2))
+* choose question best asnwer use case ([dd3e72c](https://github.com/JoaoVictorMartins05/forum-node-api/commit/dd3e72ce93db0797a48a157bf270aab182226613))
+* edit answer use case ([93b8609](https://github.com/JoaoVictorMartins05/forum-node-api/commit/93b8609207f55b08c192a012ee5c524cb935c4b2))
+
+
+### Bug Fixes
+
+* eslint code pattern ([13b694a](https://github.com/JoaoVictorMartins05/forum-node-api/commit/13b694afb2fc0b243de34c51a710355619c5d71f))
+
 ## 1.1.0 (2025-11-05)
 
 
