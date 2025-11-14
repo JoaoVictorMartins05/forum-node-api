@@ -44,7 +44,10 @@ export class QuestionComment extends Entity<IQuestionComment> {
     this.touch()
   }
 
-  static create(props: Optional<IQuestionComment, 'createdAt'>, id?: UniqueEntityId) {
+  static create(
+    props: Optional<IQuestionComment, 'createdAt'>,
+    id?: UniqueEntityId,
+  ) {
     const questionComment = new QuestionComment(
       {
         ...props,
