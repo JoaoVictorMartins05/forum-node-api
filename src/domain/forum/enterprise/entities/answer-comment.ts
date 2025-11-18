@@ -7,7 +7,6 @@ interface IAnswerComment extends ICommentProps {
 }
 
 export class AnswerComment extends Comment<IAnswerComment> {
-  
   get answerId(): UniqueEntityId {
     return this.props.answerId
   }

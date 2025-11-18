@@ -28,6 +28,8 @@ describe('Comment on answer', () => {
       content: 'New comment on answer',
     })
 
-    expect(inMemoryAnswerCommentsRepository.items[0].content).toEqual('New comment on answer')
+    expect(inMemoryAnswerCommentsRepository.items[0].content).toEqual(
+      'New comment on answer',
+    )
   })
 })

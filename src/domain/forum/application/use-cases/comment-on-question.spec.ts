@@ -10,7 +10,8 @@ let sut: CommentOnQuestionUseCase
 describe('Comment on question', () => {
   beforeEach(() => {
     inMemoryQuestionRepository = new InMemoryQuestionsRepository()
-    inMemoryQuestionCommentsRepository = new InMemoryQuestionCommentsRepository()
+    inMemoryQuestionCommentsRepository =
+      new InMemoryQuestionCommentsRepository()
     sut = new CommentOnQuestionUseCase(
       inMemoryQuestionRepository,
       inMemoryQuestionCommentsRepository,
@@ -28,6 +29,8 @@ describe('Comment on question', () => {
       content: 'New comment on question',
     })
 
-    expect(inMemoryQuestionCommentsRepository.items[0].content).toEqual('New comment on question')
+    expect(inMemoryQuestionCommentsRepository.items[0].content).toEqual(
+      'New comment on question',
+    )
   })
 })

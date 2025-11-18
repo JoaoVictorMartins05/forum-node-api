@@ -14,14 +14,16 @@ interface CommentOnAnswerUseCaseResponse {
 }
 
 export class CommentOnAnswerUseCase {
-  constructor(private answerRepository: AnswersRepository, private answerCommentsRepository: AnswerCommentsRepository) {}
+  constructor(
+    private answerRepository: AnswersRepository,
+    private answerCommentsRepository: AnswerCommentsRepository,
+  ) {}
 
   async execute({
     authorId,
     answerId,
     content,
   }: CommentOnAnswerUseCaseRequest): Promise<CommentOnAnswerUseCaseResponse> {
-    
     const answer = await this.answerRepository.findById(answerId)
 
     if (!answer) {
@@ -35,7 +37,7 @@ export class CommentOnAnswerUseCase {
     })
 
     await this.answerCommentsRepository.create(answerComment)
-    
+
     return { answerComment }
   }
 }

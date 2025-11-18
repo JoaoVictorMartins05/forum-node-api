@@ -8,8 +8,9 @@ export interface ICommentProps {
   updatedAt?: Date
 }
 
-export abstract class Comment<Props extends ICommentProps> extends Entity<Props> {
-
+export abstract class Comment<
+  Props extends ICommentProps,
+> extends Entity<Props> {
   get authorId(): UniqueEntityId {
     return this.props.authorId
   }
@@ -38,5 +39,4 @@ export abstract class Comment<Props extends ICommentProps> extends Entity<Props>
     this.props.content = content
     this.touch()
   }
-
 }
