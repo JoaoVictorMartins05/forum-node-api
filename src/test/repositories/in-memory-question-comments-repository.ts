@@ -27,4 +27,17 @@ export class InMemoryQuestionCommentsRepository
       this.items.splice(itemId, 1)
     }
   }
+
+  async findManyByQuestionId(
+    { page }: { page: number },
+    questionId: string,
+  ): Promise<QuestionComment[]> {
+    const COMMENTS_PER_PAGE = 20
+    return this.items
+      .filter(
+        (questionComment) =>
+          questionComment.questionId.toString() === questionId,
+      )
+      .slice((page - 1) * COMMENTS_PER_PAGE, page * COMMENTS_PER_PAGE)
+  }
 }
