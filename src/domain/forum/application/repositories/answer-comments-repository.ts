@@ -6,7 +6,7 @@ export interface AnswerCommentsRepository {
   findById(id: string): Promise<AnswerComment | null>
   delete(answerComment: AnswerComment): Promise<void>
   findManyByAnswerId(
-      params: PaginationParams,
-      answerId: string,
-    ): Promise<AnswerComment[]>
+    params: PaginationParams,
+    answerId: string,
+  ): Promise<AnswerComment[]>
 }
