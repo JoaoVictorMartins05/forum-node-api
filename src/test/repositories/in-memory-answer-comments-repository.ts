@@ -27,4 +27,17 @@ export class InMemoryAnswerCommentsRepository
         this.items.splice(itemId, 1)
       }
     }
+
+  async findManyByAnswerId(
+      { page }: { page: number },
+      answerId: string,
+    ): Promise<AnswerComment[]> {
+      const COMMENTS_PER_PAGE = 20
+      return this.items
+        .filter(
+          (answerComment) =>
+            answerComment.answerId.toString() === answerId,
+        )
+        .slice((page - 1) * COMMENTS_PER_PAGE, page * COMMENTS_PER_PAGE)
+    }
 }
