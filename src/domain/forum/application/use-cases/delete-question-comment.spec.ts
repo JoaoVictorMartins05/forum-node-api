@@ -1,6 +1,7 @@
 import { makeQuestionComment } from '../../../../test/factories/make-question-comment'
 import { InMemoryQuestionCommentsRepository } from '../../../../test/repositories/in-memory-question-comments-repository'
 import { DeleteQuestionCommentUseCase } from './delete-question-comment'
+import { NotAllowedError } from './errors/not-allowed-error'
 
 let inMemoryQuestionCommentsRepository: InMemoryQuestionCommentsRepository
 let sut: DeleteQuestionCommentUseCase
@@ -30,12 +31,12 @@ describe('Delete Question Comment', () => {
 
     await inMemoryQuestionCommentsRepository.create(questionComment)
 
-    expect(
-      async () =>
-        await sut.execute({
-          questionCommentId: questionComment.id.toString(),
-          authorId: 'wrong-author-id',
-        }),
-    ).rejects.toThrowError('Not allowed')
+    const result = await sut.execute({
+      questionCommentId: questionComment.id.toString(),
+      authorId: 'wrong-author-id',
+    })
+
+    expect(result.isLeft()).toBe(true)
+    expect(result.value).toBeInstanceOf(NotAllowedError)
   })
 })

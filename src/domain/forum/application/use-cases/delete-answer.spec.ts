@@ -2,6 +2,7 @@ import { makeAnswer } from '../../../../test/factories/make-answer'
 import { InMemoryAnswersRepository } from '../../../../test/repositories/in-memory-answers-repository'
 import { UniqueEntityId } from '../../../core/entities/unique-entity-id'
 import { DeleteAnswerUseCase } from './delete-answer'
+import { NotAllowedError } from './errors/not-allowed-error'
 
 let inMemoryRepository: InMemoryAnswersRepository
 let sut: DeleteAnswerUseCase
@@ -35,11 +36,13 @@ describe('Delete Answer', () => {
 
     expect(inMemoryRepository.items).toHaveLength(1)
 
-    expect(
-      async () =>
-        await sut.execute({ answerId: 'answer-1', userId: 'other-author' }),
-    ).rejects.toThrowError('You are not the author of this answer.')
+    const result = await sut.execute({
+      answerId: 'answer-1',
+      userId: 'other-author',
+    })
 
+    expect(result.isLeft()).toBe(true)
+    expect(result.value).toBeInstanceOf(NotAllowedError)
     expect(inMemoryRepository.items).toHaveLength(1)
   })
 })
