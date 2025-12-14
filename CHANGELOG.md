@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/JoaoVictorMartins05/forum-node-api/compare/v1.2.0...v1.3.0) (2025-12-14)
+
+
+### Features
+
+* add aggregate root ([dbd9c7c](https://github.com/JoaoVictorMartins05/forum-node-api/commit/dbd9c7c38b20a385b1e45492206f38e9d3c3e5cc))
+* add aggregates and watched list ([0bdc075](https://github.com/JoaoVictorMartins05/forum-node-api/commit/0bdc075632e211353518cf1a299efbe61d6e2669))
+* add edit question with attachments ([cace9cd](https://github.com/JoaoVictorMartins05/forum-node-api/commit/cace9cde8fc78e0fd68815698ad6bc9190f438a4))
+* All Project Concluded ([ab67041](https://github.com/JoaoVictorMartins05/forum-node-api/commit/ab67041ec7f6161b93ea6a786df8fa5e7d381333))
+* comment on answer use case ([b69169f](https://github.com/JoaoVictorMartins05/forum-node-api/commit/b69169fd3c4cbde9da0703f803511655bfcceb88))
+* comment on question use case ([2e14624](https://github.com/JoaoVictorMartins05/forum-node-api/commit/2e146245889af73e758a1f3c958e224f804cf070))
+* create attachments to question ([a7f9d12](https://github.com/JoaoVictorMartins05/forum-node-api/commit/a7f9d12f1f502dcabc430b03d2349e84a7ec11b2))
+* create generic errors ([a455590](https://github.com/JoaoVictorMartins05/forum-node-api/commit/a45559097e114377399bfdf47ca5b7ecd4fac1ca))
+* delete answer comment use case ([7899eef](https://github.com/JoaoVictorMartins05/forum-node-api/commit/7899eefa95cfc4c9c08ffaaa257ae23b5916445e))
+* delete question comment use case ([dccef88](https://github.com/JoaoVictorMartins05/forum-node-api/commit/dccef88afef8a80a49f9af96842affc4a40470d1))
+* either error class ([cd45b6f](https://github.com/JoaoVictorMartins05/forum-node-api/commit/cd45b6f5aa783dad0c71fdd1beeec0d5b81ec6d5))
+* either error class tests ([2cd645f](https://github.com/JoaoVictorMartins05/forum-node-api/commit/2cd645f5bd8c1210c61bb8ced7693b7012180514))
+* fetch answer comments use case ([3fc830b](https://github.com/JoaoVictorMartins05/forum-node-api/commit/3fc830beb205e7b1856ed5ba575449d23094d3ce))
+* fetch question comments use case ([6508532](https://github.com/JoaoVictorMartins05/forum-node-api/commit/650853288087acf33efeecc92a544d35308145d3))
+
+
+### Bug Fixes
+
+* lint formatter ([8cab84d](https://github.com/JoaoVictorMartins05/forum-node-api/commit/8cab84dde67cc6a70497552db1a68b4db45dd647))
+* Rename Question Repository Variables ([a01a528](https://github.com/JoaoVictorMartins05/forum-node-api/commit/a01a528c9a1ead001cff0fd64f7a5fa80b729718))
+
 ## [1.1.0](https://github.com/JoaoVictorMartins05/forum-node-api/compare/v1.2.0...v1.1.0) (2025-12-14)
 
 
