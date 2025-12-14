@@ -1,24 +1,40 @@
-import { AnswerQuestionUseCase } from './answer-question'
-import { InMemoryAnswersRepository } from '../../../../test/repositories/in-memory-answers-repository'
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { AnswerQuestionUseCase } from '@/domain/forum/application/use-cases/answer-question'
+import { InMemoryAnswerAttachmentsRepository } from 'test/repositories/in-memory-answer-attachments-repository'
+import { InMemoryAnswersRepository } from 'test/repositories/in-memory-answers-repository'
 
-let inMemoryRepository: InMemoryAnswersRepository
+let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentsRepository
+let inMemoryAnswersRepository: InMemoryAnswersRepository
 let sut: AnswerQuestionUseCase
 
-describe('Answer Question', () => {
+describe('Create Answer', () => {
   beforeEach(() => {
-    inMemoryRepository = new InMemoryAnswersRepository()
-    sut = new AnswerQuestionUseCase(inMemoryRepository)
+    inMemoryAnswerAttachmentsRepository =
+      new InMemoryAnswerAttachmentsRepository()
+    inMemoryAnswersRepository = new InMemoryAnswersRepository(
+      inMemoryAnswerAttachmentsRepository,
+    )
+    sut = new AnswerQuestionUseCase(inMemoryAnswersRepository)
   })
 
-  it('Should be able to answer a question', async () => {
+  it('should be able to create a answer', async () => {
     const result = await sut.execute({
-      instructorId: 'instructor-01',
-      questionId: 'question-01',
-      content: 'This is an answer to the question.',
+      questionId: '1',
+      instructorId: '1',
+      content: 'Conteúdo da resposta',
+      attachmentsIds: ['1', '2'],
     })
 
     expect(result.isRight()).toBe(true)
-    expect(inMemoryRepository.items).toHaveLength(1)
-    expect(inMemoryRepository.items[0]).toEqual(result.value?.answer)
+    expect(inMemoryAnswersRepository.items[0]).toEqual(result.value?.answer)
+    expect(
+      inMemoryAnswersRepository.items[0].attachments.currentItems,
+    ).toHaveLength(2)
+    expect(inMemoryAnswersRepository.items[0].attachments.currentItems).toEqual(
+      [
+        expect.objectContaining({ attachmentId: new UniqueEntityID('1') }),
+        expect.objectContaining({ attachmentId: new UniqueEntityID('2') }),
+      ],
+    )
   })
 })

@@ -1,13 +1,13 @@
-import { Either, left, right } from '../../../core/either'
-import { Question } from '../../enterprise/entities/question'
-import { AnswersRepository } from '../repositories/answer-repository'
-import { QuestionRepository } from '../repositories/question-repository'
-import { NotAllowedError } from './errors/not-allowed-error'
-import { ResourceNotFoundError } from './errors/resource-not-found-error'
+import { AnswersRepository } from '../repositories/answers-repository'
+import { Question } from '@/domain/forum/enterprise/entities/question'
+import { QuestionsRepository } from '@/domain/forum/application/repositories/questions-repository'
+import { Either, left, right } from '@/core/either'
+import { ResourceNotFoundError } from '@/core/errors/errors/resource-not-found-error'
+import { NotAllowedError } from '@/core/errors/errors/not-allowed-error'
 
 interface ChooseQuestionBestAnswerUseCaseRequest {
-  answerId: string
   authorId: string
+  answerId: string
 }
 
 type ChooseQuestionBestAnswerUseCaseResponse = Either<
@@ -19,21 +19,21 @@ type ChooseQuestionBestAnswerUseCaseResponse = Either<
 
 export class ChooseQuestionBestAnswerUseCase {
   constructor(
-    private questionRepository: QuestionRepository,
-    private answerRepository: AnswersRepository,
+    private questionsRepository: QuestionsRepository,
+    private answersRepository: AnswersRepository,
   ) {}
 
   async execute({
     answerId,
     authorId,
   }: ChooseQuestionBestAnswerUseCaseRequest): Promise<ChooseQuestionBestAnswerUseCaseResponse> {
-    const answer = await this.answerRepository.findById(answerId)
+    const answer = await this.answersRepository.findById(answerId)
 
     if (!answer) {
       return left(new ResourceNotFoundError())
     }
 
-    const question = await this.questionRepository.findById(
+    const question = await this.questionsRepository.findById(
       answer.questionId.toString(),
     )
 
@@ -45,16 +45,12 @@ export class ChooseQuestionBestAnswerUseCase {
       return left(new NotAllowedError())
     }
 
-    console.log('answer.id => ', answer.id)
-    console.log('question before => ', question.bestAnswerId, question.title)
-
-    question.title = 'testes'
     question.bestAnswerId = answer.id
 
-    console.log('question after => ', question.bestAnswerId, question.title)
+    await this.questionsRepository.save(question)
 
-    await this.questionRepository.save(question)
-
-    return right({ question })
+    return right({
+      question,
+    })
   }
 }

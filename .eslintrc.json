@@ -4,11 +4,10 @@
     "plugin:vitest-globals/recommended"
   ],
   "rules": {
-    "camelcase": "off",
-    "no-useless-constructor": "off"
+    "no-useless-constructor": "off",
+    "no-new": "off"
   },
   "env": {
-    "jest": true,
     "vitest-globals/env": true
   }
 }

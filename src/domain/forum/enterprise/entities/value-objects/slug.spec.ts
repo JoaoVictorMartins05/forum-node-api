@@ -1,8 +1,8 @@
+import { expect, test } from 'vitest'
 import { Slug } from './slug'
 
-test('It SHould be able to create a slug from a string', () => {
-  const slug = Slug.createFromText('Hello World to a slug field')
+test('it should be able to create a new slug from text', () => {
+  const slug = Slug.createFromText('Example question title')
 
-  expect(slug).toBeInstanceOf(Slug)
-  expect(slug.value).toBe('hello-world-to-a-slug-field')
+  expect(slug.value).toBe('example-question-title')
 })

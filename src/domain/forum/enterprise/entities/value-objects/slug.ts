@@ -5,17 +5,16 @@ export class Slug {
     this.value = value
   }
 
-  static create(value: string): Slug {
+  static create(value: string) {
     return new Slug(value)
   }
 
   /**
    * Receives a string and normalize it as a slug.
    *
-   * Example: "Hello World!" => "hello-world"
+   * Example: "An example title" => "an-example-title"
    *
-   * @param text
-   * @returns
+   * @param text {string}
    */
   static createFromText(text: string): Slug {
     const slugText = text

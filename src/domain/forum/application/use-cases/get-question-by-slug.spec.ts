@@ -1,29 +1,38 @@
-import { InMemoryQuestionsRepository } from '../../../../test/repositories/in-memory-questions-repository'
-import { Slug } from '../../enterprise/entities/value-objects/slug'
 import { GetQuestionBySlugUseCase } from './get-question-by-slug'
-import { makeQuestion } from '../../../../test/factories/make-question'
+import { InMemoryQuestionsRepository } from 'test/repositories/in-memory-questions-repository'
+import { Slug } from '@/domain/forum/enterprise/entities/value-objects/slug'
+import { makeQuestion } from 'test/factories/make-question'
+import { InMemoryQuestionAttachmentsRepository } from 'test/repositories/in-memory-question-attachments-repository'
 
-let inMemoryRepository: InMemoryQuestionsRepository
+let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository
+let inMemoryQuestionsRepository: InMemoryQuestionsRepository
 let sut: GetQuestionBySlugUseCase
 
 describe('Get Question By Slug', () => {
   beforeEach(() => {
-    inMemoryRepository = new InMemoryQuestionsRepository()
-    sut = new GetQuestionBySlugUseCase(inMemoryRepository)
+    inMemoryQuestionAttachmentsRepository =
+      new InMemoryQuestionAttachmentsRepository()
+    inMemoryQuestionsRepository = new InMemoryQuestionsRepository(
+      inMemoryQuestionAttachmentsRepository,
+    )
+    sut = new GetQuestionBySlugUseCase(inMemoryQuestionsRepository)
   })
 
-  it('Should be able to get a question by slug', async () => {
-    const newQuestion = makeQuestion({ slug: Slug.create('test-example-slug') })
-
-    await inMemoryRepository.create(newQuestion)
-
-    const result = await sut.execute({
-      slug: 'test-example-slug',
+  it('should be able to get a question by slug', async () => {
+    const newQuestion = makeQuestion({
+      slug: Slug.create('example-question'),
     })
 
-    expect(result.isRight()).toBe(true)
-    expect(result.value?.question.id).toBeTruthy()
-    expect(inMemoryRepository.items).toHaveLength(1)
-    expect(inMemoryRepository.items[0]).toEqual(result.value?.question)
+    await inMemoryQuestionsRepository.create(newQuestion)
+
+    const result = await sut.execute({
+      slug: 'example-question',
+    })
+
+    expect(result.value).toMatchObject({
+      question: expect.objectContaining({
+        title: newQuestion.title,
+      }),
+    })
   })
 })

@@ -1,19 +1,19 @@
-import { UniqueEntityId } from '../../../core/entities/unique-entity-id'
-import { Optional } from '../../../core/types/optional'
-import { ICommentProps, Comment } from './comment'
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { Optional } from '@/core/types/optional'
+import { Comment, CommentProps } from './comment'
 
-interface IQuestionComment extends ICommentProps {
-  questionId: UniqueEntityId
+export interface QuestionCommentProps extends CommentProps {
+  questionId: UniqueEntityID
 }
 
-export class QuestionComment extends Comment<IQuestionComment> {
-  get questionId(): UniqueEntityId {
+export class QuestionComment extends Comment<QuestionCommentProps> {
+  get questionId() {
     return this.props.questionId
   }
 
   static create(
-    props: Optional<IQuestionComment, 'createdAt'>,
-    id?: UniqueEntityId,
+    props: Optional<QuestionCommentProps, 'createdAt'>,
+    id?: UniqueEntityID,
   ) {
     const questionComment = new QuestionComment(
       {
